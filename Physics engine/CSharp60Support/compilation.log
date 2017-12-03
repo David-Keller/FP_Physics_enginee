@@ -1,0 +1,63 @@
+********************************************************************************
+*                    Saturday, December 02, 2017 6:13:32 PM                    *
+********************************************************************************
+CSharpCompilerWrapper.exe version: 2.0.3.30
+Platform: Windows
+Target assembly: Assembly-CSharp.dll
+Project directory: E:\unity project folder\Eldir\Physics engine
+Target profile directory: D:\Program Installs\Editor\Data\Mono\lib\mono\unity
+Unity 'Data' or 'Frameworks' directory: D:/Program Installs/Editor/Data
+Compiler: Microsoft C# 6.0
+
+- Compilation -----------------------------------------------
+
+Process: E:\unity project folder\Eldir\Physics engine\CSharp60Support\Roslyn\csc.exe
+Arguments: -nostdlib+ -noconfig -nologo -r:"D:\Program Installs\Editor\Data\Mono\lib\mono\unity\mscorlib.dll" -r:"D:\Program Installs\Editor\Data\Mono\lib\mono\unity\System.dll" -r:"D:\Program Installs\Editor\Data\Mono\lib\mono\unity\System.Core.dll" -r:"D:\Program Installs\Editor\Data\Mono\lib\mono\unity\System.Xml.dll" @Temp/UnityTempFile-b8b148351b1a5f5479993a8fd15f2ac6 
+Exit code: 0
+Elapsed time: 4.23 sec
+
+- Compiler output (0 lines):
+
+- Compiler errors (3 lines):
+0: Assets\Fixed.cs(9,15): warning CS0659: 'Fixed' overrides Object.Equals(object o) but does not override Object.GetHashCode()
+1: Assets\PhysicsObject.cs(65,11): warning CS0414: The field 'PhysicsObject.dt' is assigned but its value is never used
+2: Assets\Fixed.cs(14,16): warning CS0414: The field 'Fixed.scale' is assigned but its value is never used
+
+- PDB to MDB conversion --------------------------------------
+
+Process: E:\unity project folder\Eldir\Physics engine\CSharp60Support\Roslyn\pdb2mdb.exe
+Arguments: Temp\Assembly-CSharp.dll
+Exit code: 0
+Elapsed time: 0.18 sec
+
+- pdb2mdb.exe output (0 lines):
+********************************************************************************
+*                    Saturday, December 02, 2017 6:13:38 PM                    *
+********************************************************************************
+CSharpCompilerWrapper.exe version: 2.0.3.30
+Platform: Windows
+Target assembly: Assembly-CSharp-Editor.dll
+Project directory: E:\unity project folder\Eldir\Physics engine
+Target profile directory: D:\Program Installs\Editor\Data\MonoBleedingEdge\lib\mono\2.0-api
+Unity 'Data' or 'Frameworks' directory: D:/Program Installs/Editor/Data
+Compiler: Microsoft C# 6.0
+
+- Compilation -----------------------------------------------
+
+Process: E:\unity project folder\Eldir\Physics engine\CSharp60Support\Roslyn\csc.exe
+Arguments: -nostdlib+ -noconfig -nologo -r:"D:\Program Installs\Editor\Data\MonoBleedingEdge\lib\mono\2.0-api\mscorlib.dll" -r:"D:\Program Installs\Editor\Data\MonoBleedingEdge\lib\mono\2.0-api\System.dll" -r:"D:\Program Installs\Editor\Data\MonoBleedingEdge\lib\mono\2.0-api\System.Core.dll" -r:"D:\Program Installs\Editor\Data\MonoBleedingEdge\lib\mono\2.0-api\System.Xml.dll" @Temp/UnityTempFile-e11f4b7c1bc094c4cbb1fcda980558ec 
+Exit code: 0
+Elapsed time: 2.79 sec
+
+- Compiler output (0 lines):
+
+- Compiler errors (0 lines):
+
+- PDB to MDB conversion --------------------------------------
+
+Process: E:\unity project folder\Eldir\Physics engine\CSharp60Support\Roslyn\pdb2mdb.exe
+Arguments: Temp\Assembly-CSharp-Editor.dll
+Exit code: 0
+Elapsed time: 0.13 sec
+
+- pdb2mdb.exe output (0 lines):
