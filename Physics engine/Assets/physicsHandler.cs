@@ -32,14 +32,19 @@ public class physicsHandler : MonoBehaviour {
         {
             for(int j = i+1; j < AllObjects.Length; j++)
             {
+                Debug.Log("testing");
                 IntersectData intersectdata = AllObjects[i].col.intersect(AllObjects[j].col);
+
                 if (intersectdata.DoesIntersect)
                 {
-                    vector direction = intersectdata.distance;//.normalized;
-                    vector otherdirection = vector.reflect(direction, AllObjects[i].vel);//.normalized);
-
+                    Debug.Log("intersection");
+                    vector direction = intersectdata.distance.normalized;
+                    vector otherdirection = vector.reflect(direction, AllObjects[i].vel).normalized;
+                    
                     AllObjects[i].vel = vector.reflect(AllObjects[i].vel, otherdirection);
                     AllObjects[j].vel = vector.reflect(AllObjects[j].vel, direction);
+
+                    Debug.Log("intersection done");
                 }
             }
         }

@@ -22,13 +22,15 @@ public class BoundingSphere : collider {
     {
 
         Fixed RadiusDistance = radius + other.radius;
-        RadiusDistance = RadiusDistance * RadiusDistance;
+        //RadiusDistance = RadiusDistance * RadiusDistance;
         vector direction = other.center - center;
-        Fixed centerDistance = direction.magnitudeSquared;
+        Fixed centerDistance = direction.magnitude;
         Fixed distance = centerDistance - RadiusDistance;
         direction = direction / centerDistance;
+        //direction = direction.normalized;
 
-        if(centerDistance < RadiusDistance)
+        Debug.Log(distance);
+        if (centerDistance < RadiusDistance)
         {
             return new IntersectData(true, direction * distance);
         }

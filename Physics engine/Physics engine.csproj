@@ -99,11 +99,13 @@
     <Compile Include="Assets\CSharp vNext Support\FormattableString\FormattableString.cs" />
     <Compile Include="Assets\CSharp vNext Support\FormattableString\FormattableStringFactory.cs" />
     <Compile Include="Assets\Fixed.cs" />
+    <Compile Include="Assets\Fixed3x3.cs" />
     <Compile Include="Assets\IntersectData.cs" />
     <Compile Include="Assets\Math.cs" />
     <Compile Include="Assets\Matrix.cs" />
     <Compile Include="Assets\OBB.cs" />
     <Compile Include="Assets\PhysicsObject.cs" />
+    <Compile Include="Assets\Quat.cs" />
     <Compile Include="Assets\Vector.cs" />
     <Compile Include="Assets\collider.cs" />
     <Compile Include="Assets\newFixed.cs" />

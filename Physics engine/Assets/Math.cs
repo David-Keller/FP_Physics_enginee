@@ -13,6 +13,15 @@ public class vector {
         get { return (x * x) + (y * y) + (z * z); }
     }
 
+    public Fixed magnitude
+    {
+        get { return magnitudeSquared.sqrt1(); }
+    }
+    public vector normalized
+    {
+        get { return this/magnitude; }
+    }
+
     public vector()
     {
         x.fix = 0;
@@ -93,20 +102,22 @@ public class vector {
 
 
     //---------------------functions -----------------------//
-    public static vector reflect(vector a, vector b)
+    public static vector reflect(vector R, vector normal)
     {
 
-        Debug.Log("a = " + a.ToString());
-        Debug.Log("b = " + b.ToString());
+        //R = R * new Fixed(-1m);
+        Debug.Log("a = " + R.ToString());
+        Debug.Log("b = " + normal.ToString());
 
-        vector c = a - (dot(a, b)* new Fixed(2m)*b);
-        
+        vector c = R - (dot(R, normal)* new Fixed(2m)*normal);
+        Debug.Log("c = " + c.ToString());
         return c;
     }
     public static Fixed dot(vector a, vector b)
     {
-        Fixed c = new Fixed();
-        c.fix = (a.x.fix * b.x.fix) + (a.y.fix * b.y.fix) + (a.z.fix * b.z.fix);
+        //dot product was implimented wrong took time to solve
+        Fixed c = new Fixed(); 
+        c = (a.x * b.x) + (a.y * b.y) + (a.z * b.z);
         return c;
     }
 

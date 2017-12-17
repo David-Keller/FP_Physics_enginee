@@ -11,13 +11,13 @@ public struct Fixed : IEquatable<Fixed> , IFormattable
 
     //--------------- member variables----------------//
     public long fix;
-    static int scale = 32;
+    //static int scale = 32;
 
     //------------------ constructors ----------------//
 
     public Fixed(int num)
     {
-        fix = num;
+        fix = num* 4294967296;
     }
 
     public Fixed(long num)
@@ -48,7 +48,6 @@ public struct Fixed : IEquatable<Fixed> , IFormattable
         //c.fix = c.fix >> scale;
         return c;
     }
-    //TODO implement the / (division) operator
     public static Fixed operator /(Fixed a, Fixed b)
     {
         Fixed c = new Fixed();
@@ -112,6 +111,11 @@ public struct Fixed : IEquatable<Fixed> , IFormattable
         return new Fixed((decimal)v);
     }
 
+    public static implicit operator Fixed(int v)
+    {
+        return new Fixed(v);
+    }
+
     public bool Equals(Fixed f)
     {
         return f.fix == fix;
@@ -131,30 +135,124 @@ public struct Fixed : IEquatable<Fixed> , IFormattable
 
     public Fixed sqrt1()
     {
-        return sqrt_callback(1);
+        return sqrt_callback(1, 0);
     }
 
-    Fixed sqrt_callback( Fixed guess)
+    Fixed sqrt_callback( Fixed guess, int tryNum)
     {
-        Fixed improvedValue = guess + ((fix / guess) / 2);
+        //Debug.Log(guess);
+        //Debug.Log(this / guess);
+        Fixed improvedValue = (guess + (this / guess)) / new Fixed(2m);
+       
 
+        Fixed error = this - (improvedValue * improvedValue);
+        //if(error < new Fixed(0m))
+        //{
+        //    error = error * new Fixed(-1m);
+        //}
 
-        Fixed error = fix - (improvedValue * improvedValue);
-        if(error < new Fixed(0m))
+        if (error < new Fixed(0.0001m) && error > new Fixed(-0.0001m) || tryNum > 200)
         {
-            error = error * new Fixed(-1m);
-        }
-
-        if (error < new Fixed(0.0001m))
-        {
+            //Debug.Log(tryNum);
             return improvedValue;
         }
 
-        return sqrt_callback(improvedValue);
+        return sqrt_callback(improvedValue, tryNum + 1);
     }
 
     public Fixed sqrt2()
     {
         return new Fixed();
+    }
+
+
+    public void sincos(out Fixed sin, out Fixed cos)
+    {
+        Fixed angle = this;
+        Fixed inverter = new Fixed(1m); // used to invert if needed
+        //get the angle between 0 and 360
+        while(angle > new Fixed(360m))
+        {
+            angle = angle - new Fixed(360m);
+        }
+        while(angle < new Fixed(0m))
+        {
+            angle = angle + new Fixed(360m);
+        }
+
+        //=========== for sine ===============//
+        //get the angle between 0 and 90
+        if(angle > new Fixed(180m))
+        {
+            angle = angle - new Fixed(180m);
+            inverter = new Fixed(-1m);
+        }
+        if(angle > 90)
+        {
+            angle = new Fixed(180m) - angle;
+        }
+
+        //get the angle between 0 and 45
+        if(angle > new Fixed(45m))
+        {
+            Debug.Log(angle);
+            //calculate the cofuntions of the angle
+            angle = new Fixed(90m) - angle;
+            Debug.Log(angle);
+            sin = new Fixed(1m) - (angle * angle / new Fixed(2m)) + (angle * angle * angle * angle / new Fixed(24m)) - (angle * angle * angle * angle * angle * angle / new Fixed(720m));
+            sin = sin * inverter;
+        }
+        else
+        {
+            Debug.Log(angle);
+            // calculate the angles
+            angle = angle * new Fixed(3.14159265359m / 180m);
+            Debug.Log(angle);
+            sin = angle - (angle * angle * angle / new Fixed(6m)) + (angle * angle * angle * angle * angle / new Fixed(120m));
+            sin = sin * inverter;
+        }
+
+        //============ for cosine ==============//
+        angle = this;
+        inverter = new Fixed(1m); //reset inverter
+        //get the angel between 0 and 90
+        if (angle > new Fixed(270m))
+        {
+            angle = angle - new Fixed(270m);
+            angle = new Fixed(90m) - angle;
+        }
+        if (angle > new Fixed(180m))
+        {
+            angle =  angle - new Fixed(180m);
+            //angle = new Fixed(90m) - angle;
+            inverter = new Fixed(-1m);
+        }
+        if (angle > new Fixed(90m))
+        {
+            angle = angle - new Fixed(90m);
+            angle = new Fixed(90m) - angle;
+            inverter = new Fixed(-1m);
+        }
+
+        //get the angle between 0 and 45
+        if (angle < new Fixed(45m))
+        {
+            //calculate the cofuntions of the angle
+            
+            angle = angle * new Fixed(3.14159265359m / 180m);
+            cos = new Fixed(1m) - (angle * angle / new Fixed(2m)) + (angle * angle * angle * angle / new Fixed(24m)) - (angle * angle * angle * angle * angle * angle / new Fixed(720m));
+            cos = cos * inverter;
+        }
+        else
+        {
+
+            // calculate the angles
+            angle = new Fixed(90m) - angle;
+            angle = angle * new Fixed(3.14159265359m / 180m);
+
+            cos = angle - (angle * angle * angle / new Fixed(6m)) + (angle * angle * angle * angle * angle / new Fixed(120m));
+            cos = cos * inverter;
+        }
+
     }
 }
