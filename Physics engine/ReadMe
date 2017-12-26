@@ -1,0 +1,14 @@
+THis physics engine is testing the idea of using fixed point math (instead of floats) as a basis for a physics 
+system. It uses a 64 bit integer to store the fixed numbers.
+
+The fixed point math can perform +, -, *, /, sin, cos, sqrt.
+
+Bugs and Flaws:
+1) grazing collisions cause the objects to orbit (still working on possible solutions)
+2) C# was the wrong language to use (was used because of familiarity with unity)
+3) sin, cos, sqrt are all very slow and need better algorithms implemented (fast enough for proof of concept)
+
+future plans: 
+1) add in rotations and finish up the obb class.
+2) rewrite the engine in c++
+3) offload the computations onto the GPU using compute shaders
