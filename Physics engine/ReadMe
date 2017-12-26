@@ -1,5 +1,6 @@
-THis physics engine is testing the idea of using fixed point math (instead of floats) as a basis for a physics 
-system. It uses a 64 bit integer to store the fixed numbers.
+This physics engine is testing the idea of using fixed point math (instead of floats) as a basis for a physics 
+system. It uses a 64 bit integer to store the fixed numbers.  Unity was used as a render engine
+and for a few of its helper functions.
 
 The fixed point math can perform +, -, *, /, sin, cos, sqrt.
 
